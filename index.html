@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrimeNest Real Estate</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f9fafb;
+      color: #222;
+      line-height: 1.5;
+    }
+    header {
+      background: #004154;
+      color: #e0f7fa;
+      padding: 25px 0;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 65, 84, 0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      font-weight: 900;
+    }
+    nav {
+      margin-top: 14px;
+    }
+    nav a {
+      color: #a7d8de;
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00838f;
+    }
+    .container {
+      max-width: 1150px;
+      margin: 32px auto 70px;
+      padding: 0 20px;
+    }
+    h2 {
+      color: #004154;
+      font-size: 2.1rem;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #00838f;
+      padding-bottom: 8px;
+      letter-spacing: 1.2px;
+    }
+    /* Search Filters */
+    .filters {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      background: white;
+      padding: 18px 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .filters label {
+      font-weight: 700;
+      color: #004154;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 180px;
+    }
+    select, input[type="text"], input[type="number"] {
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 2px solid #00838f;
+      font-size: 1rem;
+      outline: none;
+    }
+    /* Property Listings */
+    .property-listings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px, 1fr));
+      gap: 26px;
+    }
+    .property-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+    }
+    .property-card:hover {
+      transform: translateY(-6px);
+    }
+    .property-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+    .property-info {
+      padding: 18px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .property-info h3 {
+      margin: 0 0 10px;
+      color: #004154;
+      font-size: 1.4rem;
+    }
+    .property-info p {
+      flex-grow: 1;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .property-details {
+      margin-top: 12px;
+      font-weight: 600;
+      color: #00838f;
+      font-size: 1rem;
+    }
+    /* Inquiry Form */
+    .inquiry-form {
+      background: white;
+      padding: 28px 25px;
+      margin-top: 50px;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .inquiry-form h2 {
+      margin-top: 0;
+      color: #004154;
+    }
+    form {
+      display: grid;
+      gap: 16px;
+    }
+    label {
+      font-weight: 700;
+      color: #004154;
+    }
+    input, textarea, select {
+      padding: 11px 14px;
+      border-radius: 8px;
+      border: 2px solid #00838f;
+      font-size: 1rem;
+      resize: vertical;
+      outline: none;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    textarea {
+      min-height: 80px;
+    }
+    button {
+      background-color: #00838f;
+      color: white;
+      border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005662;
+    }
+    /* Footer */
+    footer {
+      background: #004154;
+      color: #a7d8de;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PrimeNest Real Estate</h1>
+    <nav>
+      <a href="#listings">Properties</a>
+      <a href="#inquiry">Inquiry</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section id="listings">
+      <h2>Property Listings</h2>
+      <div class="filters">
+        <div class="filter-group">
+          <label for="typeFilter">Property Type</label>
+          <select id="typeFilter" name="typeFilter">
+            <option value="">All Types</option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="villa">Villa</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="bedroomsFilter">Bedrooms</label>
+          <select id="bedroomsFilter" name="bedroomsFilter">
+            <option value="">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="priceMin">Price Min ($)</label>
+          <input type="number" id="priceMin" name="priceMin" placeholder="0" min="0" />
+        </div>
+        <div class="filter-group">
+          <label for="priceMax">Price Max ($)</label>
+          <input type="number" id="priceMax" name="priceMax" placeholder="Any" min="0" />
+        </div>
+        <div class="filter-group">
+          <label>&nbsp;</label>
+          <button type="button" onclick="alert('Search filter functionality can be added with JavaScript')">Search</button>
+        </div>
+      </div>
+      <div class="property-listings">
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern Apartment" class="property-img" />
+          <div class="property-info">
+            <h3>Modern Apartment Downtown</h3>
+            <p>Located in the heart of the city, 2 bedrooms, 2 bathrooms, close to amenities and parks.</p>
+            <div class="property-details">$350,000 · Apartment · 2 Beds</div>
+          </div>
+        </div>
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Family House" class="property-img" />
+          <div class="property-info">
+            <h3>Cozy Family House</h3>
+            <p>Spacious 4-bedroom house with a large garden and garage in a quiet neighborhood.</p>
+            <div class="property-details">$580,000 · House · 4 Beds</div>
+          </div>
+        </div>
+        <div class="property-card">
+          <img src="https://images.unsplash.com/photo-1531971589569-0d9370cbe1e5?q=80&w=1181&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury Villa" class="property-img" />
+          <div class="property-info">
+            <h3>Luxury Seaside Villa</h3>
+            <p>Exclusive 5-bedroom villa with ocean views, pool, and private beach access.</p>
+            <div class="property-details">$1,200,000 · Villa · 5 Beds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inquiry" class="inquiry-form">
+      <h2>Inquiry Form</h2>
+      <form>
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Your full name" required />
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        
+        <label for="propertyType">Interested Property Type</label>
+        <select id="propertyType" name="propertyType" required>
+          <option value="">-- Select Property Type --</option>
+          <option value="apartment">Apartment</option>
+          <option value="house">House</option>
+          <option value="villa">Villa</option>
+        </select>
+        
+        <label for="message">Additional Questions or Details</label>
+        <textarea id="message" name="message" placeholder="Your message here..." rows="5"></textarea>
+        
+        <button type="submit">Send Inquiry</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 PrimeNest Real Estate. All rights reserved.
+  </footer>
+</body>
+</html>
